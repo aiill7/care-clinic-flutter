@@ -12,7 +12,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'care clinic',
-      home: const HomePage(),
+      home: const Directionality(
+        textDirection: TextDirection.ltr,
+        child: HomePage(),
+      ),
     );
   }
 }
@@ -22,13 +25,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('care clinic'),
         backgroundColor: Colors.teal,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(screenWidth < 600 ? 16 : 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,10 +42,22 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            const Text('👨‍⚕️', style: TextStyle(fontSize: 60)),
-            const SizedBox(height: 10),
-            const Text('care clinic', style: TextStyle(fontSize: 20)),
-            const Text('Dr. Ahmed - General Medicine'),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('👨‍⚕️', style: TextStyle(fontSize: 60)),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('care clinic', style: TextStyle(fontSize: 20)),
+                      const Text('Dr. Ahmed - General Medicine'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
