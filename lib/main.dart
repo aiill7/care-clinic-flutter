@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'screens/login_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -9,67 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'care clinic',
-      home: const Directionality(
-        textDirection: TextDirection.ltr,
-        child: HomePage(),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('care clinic'),
-        backgroundColor: Colors.teal,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(screenWidth < 600 ? 16 : 32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'our Doctors',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('👨‍⚕️', style: TextStyle(fontSize: 60)),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('care clinic', style: TextStyle(fontSize: 20)),
-                      const Text('Dr. Ahmed - General Medicine'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Booking feature coming soon!')),
-                );
-              },
-              child: const Text('Book Appointment'),
-            ),
-          ],
-        ),
-      ),
+      title: 'Care Clinic',
+      home: LoginPage(),
     );
   }
 }
